@@ -98,25 +98,24 @@ span.psw {
 
     <div id="body">
         <br><br><br><br><br><br><br><br><br><br><br><br>        
-    <form method="post" enctype="multipart/form-data" >
-        {% csrf_token %}
+    <form action="/action_page.php">
+
          <div class="container">
              <label><b>Username</b></label>
              <input type="text" placeholder="Enter Username" name="uname" required>
 
              <label><b>Key</b></label>
              <input type="password" placeholder="Enter Key" name="psw" required>
-              <input type='file' name="image" onchange="readURL(this);" />
-              <button type="submit">Upload</button>
+
     </form>
 
-        <br><br><br><br>  
+     <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">UPLOAD</button>
+     </form>
+        <br><br><br><br>
         <button class="button" onclick="alert('File Sent')">SEND</button>
-
-         {% if uploaded_file_url %}
-        <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-        {% endif %}
-
       <!--  <img id="blah" src="http://placehold.it/180" alt="your image" /> -->
     </div>
 
@@ -126,6 +125,7 @@ span.psw {
             <p style="align-self: center;">&copy;All rights reserved.</p>
         </div>
     </div>
+</div>
 </body>
 {% endblock %}
 </html>

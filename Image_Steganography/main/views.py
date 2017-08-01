@@ -19,12 +19,23 @@ def home(request):
 def simple_upload(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
-        form.save()
-        img = Image.open(Document.document)
-        img_encoded = encode_image(img,"HEy ssup")
-        if img_encoded:
+        if form.is_valid():
+            form.save()
+            pic= StringIO(request.FILES['document'].read())
+            img = Image.open(pic)
+            img_encoded = encode_image(img, "HEy ssup")
+            if img_encoded:
                 hidden_text = decode_image(img_encoded)
                 print hidden_text
+            return redirect('home')
+        else:
+            print "FAIL!!!!111"
+    else:
+        form = DocumentForm()
+        return render(request, 'send.html', {
+            'form': form
+        })
+
 
 
 

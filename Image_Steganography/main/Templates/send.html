@@ -112,10 +112,10 @@ span.psw {
      <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">UPLOAD</button>
+    <button class="button" type="submit">ENCODE DATA</button>
      </form>
         <br><br><br><br>
-        <button class="button" onclick="alert('File Sent')">SEND</button>
+        <button class="button" onclick="alert('File Sent')">SEND AS MAIL</button>
       <!--  <img id="blah" src="http://placehold.it/180" alt="your image" /> -->
     </div>
 

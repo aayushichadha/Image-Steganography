@@ -69,7 +69,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Image_Steganography/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
@@ -81,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="send.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="send.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Image_Steganography/main/Templates/send.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1972">
-              <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+            <state relative-caret-position="197">
+              <caret line="114" column="52" lean-forward="false" selection-start-line="114" selection-start-column="52" selection-end-line="114" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -128,11 +128,11 @@
         <option value="$PROJECT_DIR$/Image_Steganography/main/forms.py" />
         <option value="$PROJECT_DIR$/Image_Steganography/urls.py" />
         <option value="$PROJECT_DIR$/Image_Steganography/main/Templates/index.html" />
-        <option value="$PROJECT_DIR$/Image_Steganography/main/Templates/send.html" />
         <option value="$PROJECT_DIR$/Image_Steganography/main/models.py" />
         <option value="$PROJECT_DIR$/Image_Steganography/settings.py" />
         <option value="$PROJECT_DIR$/Image_Steganography/main/Encode.py" />
         <option value="$PROJECT_DIR$/Image_Steganography/main/views.py" />
+        <option value="$PROJECT_DIR$/Image_Steganography/main/Templates/send.html" />
       </list>
     </option>
   </component>
@@ -858,14 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Image_Steganography/main/Templates/send.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1972">
-          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Image_Steganography/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2074">
@@ -878,6 +870,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Image_Steganography/main/Templates/send.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="114" column="52" lean-forward="false" selection-start-line="114" selection-start-column="52" selection-end-line="114" selection-end-column="52" />
           <folding />
         </state>
       </provider>

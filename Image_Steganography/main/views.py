@@ -9,6 +9,7 @@ from Encode import encode_image,decode_image
 from PIL import Image
 from django.core.files.base import ContentFile
 import os.path
+import os
 from StringIO import StringIO
 
 def home(request):
@@ -21,10 +22,13 @@ def simple_upload(request):
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            pic= StringIO(request.FILES['document'].read())
-            img = Image.open(pic)
+
+            img = Image.open(settings.MEDIA_ROOT + '/' + form.cleaned_data['document'].name)
+            encoded_file = "enc" + form.cleaned_data['document'].name
             img_encoded = encode_image(img, "HEy ssup")
             if img_encoded:
+                img_encoded.save(encoded_file)
+                os.startfile(encoded_file)
                 hidden_text = decode_image(img_encoded)
                 print hidden_text
             return redirect('home')

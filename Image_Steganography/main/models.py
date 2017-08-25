@@ -9,6 +9,5 @@ class User(models.Model):
     key = models.CharField(max_length=200,null=True)
 
 class Document(models.Model):
-    description = models.CharField(max_length=255, blank=True)
-    document = models.ImageField(upload_to='')
+    Image = models.ImageField(upload_to='',null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)

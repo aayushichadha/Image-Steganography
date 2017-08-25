@@ -10,50 +10,59 @@ from PIL import Image
 from django.core.files.base import ContentFile
 import os.path
 import os
+from django.utils.encoding import smart_str
+from django.http import HttpResponse
 from StringIO import StringIO
+from django.contrib import messages
+from django.shortcuts import render_to_response
+
 
 def home(request):
     documents = Document.objects.all()
     return render(request, 'index.html', { 'documents': documents })
 
 
-def simple_upload(request):
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+def encode(request):
 
-            img = Image.open(settings.MEDIA_ROOT + '/' + form.cleaned_data['document'].name)
-            encoded_file = "enc" + form.cleaned_data['document'].name
-            img_encoded = encode_image(img, "HEy ssup")
+    if request.method == 'POST' and request.FILES['image']:
+            form = Document()
+            form.Image = request.FILES['image']
+            form.save()
+            text = request.POST['data']
+            img = Image.open(settings.MEDIA_ROOT + '/' + form.Image.name)
+            encoded_file = "enc" + form.Image.name
+            img_encoded = encode_image(img,text)
+
             if img_encoded:
                 img_encoded.save(encoded_file)
+                print "Message Encoded! "
                 os.startfile(encoded_file)
-                hidden_text = decode_image(img_encoded)
-                print hidden_text
+                response = HttpResponse(content_type='application/force-download')
+                response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(encoded_file)
+
+            else:
+                print "FAIL!!!!!"
             return redirect('home')
-        else:
-            print "FAIL!!!!111"
+
     else:
-        form = DocumentForm()
-        return render(request, 'send.html', {
-            'form': form
-        })
-
-
-
-
+        print "FORM FAIL"
     return render(request, 'send.html')
 
 
-def model_form_upload(request):
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
+
+
+def decode(request):
+
+    if request.method == 'POST' and request.FILES['image']:
+            form = Document()
+            form.Image = request.FILES['image']
             form.save()
-            return redirect('home')
+            img = Image.open(settings.MEDIA_ROOT + '/' + form.Image.name)
+            hidden_text = decode_image(img)
+            messages.info(request, 'The Secret Message is:'+hidden_text)
+            print hidden_text
+            msg= 'The Secret Message is:'+hidden_text
+            return render(request, 'retrieve.html', {"message":msg})
     else:
-        form = DocumentForm()
-    return render(request, 'core/model_form_upload.html', {
-        'form': form
-    })
+         print "FORM FAIL"
+         return render(request,'retrieve.html', {"message":''})

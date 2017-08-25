@@ -1,3 +1,4 @@
+
 <!doctype html>
 <!-- Website Template by freewebsitetemplates.com -->
 <html>
@@ -8,9 +9,40 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/mobile.css" media="screen and (max-width : 568px)">
    <!-- <link rel="icon" type="image/jpg" href="images/homelogo.jpg" /> -->
-    <script type="text/javascript" src="js/mobile.js"></script>
 </head>
+
+<!-- CSS -->
 <style>
+input[type=file]{
+padding:10px;
+margin-left: 0px;
+background:#2d2d2d;}
+
+/* form css */
+form {
+    border: 3px solid #f1f1f1;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.container {
+    padding-top: 6px;
+    padding-left: 106px;
+    padding-right: 106px;
+}
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Button SEND */
 .button {
     background-color: #252525;
     border: none;
@@ -26,40 +58,83 @@
     margin-right: auto;
     margin-left: auto;
 }
-#body {
-    margin-left: 50px;
-    margin-top: 100px;
-    padding: 220px 0 20px;
-    text-align: center;
-    overflow: auto;
-}
 </style>
+
+<!--  Srcipt -->
+<script>
+     function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+     {% if message %}
+      //whatever conditions and js code
+      alert('{{message}}');
+   {% endif %}
+</script>
+
+
+<!-- Body -->
+{% load static %}
+
+{% block content %}
+
+
 <body>
-<div id="header">
+    <div id="header">
 <p style="color: #eeeeee; font-size: 25px; padding-top: 10px;">IMAGE STEGANOGRAPHY</p>        
 <ul id="navigation">
             <li class="selected">
-                <a href="index.html">home</a>
+                <a href="/">home</a>
             </li>
             <li>
-                <a href="about.html">about</a>
+                <a href="about">about</a>
             </li>
-           
         </ul>
     </div>
 
     <div id="body">
+        <br><br><br><br><br><br><br><br><br><br><br><br>        
+
+        <form method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+           <div class="container">
+             <label><b>Key</b></label>
+             <input type="text" placeholder="Enter Key" name="uname" >
+
+             <input type='file' name="image" onchange="readURL(this);" />
+
+              <button class="button" type="submit" >DECODE DATA</button>
+               <br><br><br><br><br><br><br><br><br><br><br><br>
+    </form>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+      <!--  <img id="blah" src="http://placehold.it/180" alt="your image" /> -->
+
+    </div>
 
 
-
-
-
-
-
-<div id="footer">
+    <div id="footer">
         <div>
             <p style="align-self: center;">&copy;All rights reserved.</p>
         </div>
     </div>
+</div>
 </body>
+  {% endblock %}
 </html>

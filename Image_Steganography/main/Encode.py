@@ -2,7 +2,6 @@ from PIL import Image
 def encode_image(img, msg):
     
     length = len(msg)
-    print length
     if length > 1500:
         print("text too long! (don't exeed 255 characters)")
         return False
@@ -16,7 +15,7 @@ def encode_image(img, msg):
                 r, g, b = img.getpixel((col, row))
                 if row == 0 and col == 0 and index < length:
                     asc = length
-                    print asc
+
                 elif index <= length:
                     c = msg[index - 1]
                     asc = ord(c)
@@ -28,7 +27,6 @@ def encode_image(img, msg):
                 r, g, b, a = img.getpixel((col, row))
                 if row == 0 and col == 0 and index < length:
                     asc = length
-                    print asc
                 elif index <= length:
                     c = msg[index - 1]
                     asc = ord(c)
@@ -56,7 +54,6 @@ def decode_image(img):
             # first pixel r value is length of message
             if row == 0 and col == 0:
                 length = r
-                print length
             elif index <= length:
                 msg += chr(r)
             index += 1

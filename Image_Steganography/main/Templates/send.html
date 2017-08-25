@@ -88,35 +88,35 @@ span.psw {
 <p style="color: #eeeeee; font-size: 25px; padding-top: 10px;">IMAGE STEGANOGRAPHY</p>        
 <ul id="navigation">
             <li class="selected">
-                <a href="index.html">home</a>
+                <a href="/">home</a>
             </li>
             <li>
-                <a href="about.html">about</a>
+                <a href="about">about</a>
             </li>
         </ul>
     </div>
 
     <div id="body">
         <br><br><br><br><br><br><br><br><br><br><br><br>        
-    <form action="/action_page.php">
 
-         <div class="container">
-             <label><b>Username</b></label>
-             <input type="text" placeholder="Enter Username" name="uname" required>
-
+        <form method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+           <div class="container">
              <label><b>Key</b></label>
-             <input type="password" placeholder="Enter Key" name="psw" required>
+             <input type="text" placeholder="Enter Key" name="uname" >
 
+           <label><b>Data</b></label>
+             <input type="text" placeholder="Enter Data to be encoded" name="data" >
+
+             <input type='file' name="image" onchange="readURL(this);" />
+
+              <button class="button" type="submit" >ENCODE DATA</button>
+               <br><br><br><br><br><br><br><br><br><br><br><br>
     </form>
 
-     <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="button" type="submit">ENCODE DATA</button>
-     </form>
-        <br><br><br><br>
-        <button class="button" onclick="alert('File Sent')">SEND AS MAIL</button>
+
       <!--  <img id="blah" src="http://placehold.it/180" alt="your image" /> -->
+
     </div>
 
 
@@ -127,5 +127,5 @@ span.psw {
     </div>
 </div>
 </body>
-{% endblock %}
+  {% endblock %}
 </html>
